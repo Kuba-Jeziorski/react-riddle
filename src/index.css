@@ -12,6 +12,12 @@
 
   /* Wrappers */
   --main-wrapper: 1000px;
+
+  /* Lengths */
+  --default-length: 15px;
+
+  /* Borders */
+  --border-radius: 5px;
 }
 
 * {
@@ -40,6 +46,103 @@ h3 {
   font-weight: var(--header-font-weight);
 }
 
+p {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  display: flex;
+  padding: 8px;
+  background-color: transparent;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button.hidden {
+  /* background-color: lightgreen; */
+  display: none;
+}
+
+ul.questions-listing {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr;
+  gap: var(--default-length);
+  margin: var(--default-length) 0 0 0;
+  padding: 0;
+}
+
+ul.questions-listing li {
+  padding: 5px;
+  border-radius: var(--border-radius);
+  list-style-type: none;
+  border: 2px solid transparent;
+  aspect-ratio: 1;
+  cursor: pointer;
+  transition: border 0.3s;
+}
+
+ul.questions-listing li.current {
+  border: 2px solid #000;
+}
+
+ul.dialog-listing {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--default-length);
+  padding: 0;
+  margin: 0;
+}
+
+ul.dialog-listing li {
+  width: calc(50% - (var(--default-length) / 2));
+  list-style-type: none;
+  border: 1px solid red;
+  border-radius: var(--border-radius);
+  padding: 5px;
+  cursor: pointer;
+  background-color: transparent;
+  transition: background-color 0.3s;
+}
+
+ul.dialog-listing li:hover {
+  background-color: lightblue;
+}
+
+ul.dialog-listing li.choosen {
+  background-color: lightblue;
+}
+
+dialog {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--default-length);
+  margin: var(--default-length) auto 0;
+  padding: var(--default-length);
+  width: 100%;
+  border-radius: var(--border-radius);
+}
+
+.dialog-buttons {
+  display: flex;
+  justify-content: center;
+  gap: var(--default-length);
+}
+
+.dialog-buttons button {
+  display: flex;
+  justify-content: center;
+  width: 150px;
+  background-color: transparent;
+}
+
+.dialog-buttons button:hover {
+  background-color: lightblue;
+}
+
 .wrapper {
   max-width: var(--main-wrapper);
   width: 100%;
@@ -50,4 +153,33 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+
+.spin {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: spin 1s linear forwards;
+}
+
+.spin.easy {
+  background-color: green;
+  background-image: url(./img/easy.svg);
+}
+.spin.medium {
+  background-color: yellow;
+  background-image: url(./img/medium.svg);
+}
+.spin.hard {
+  background-color: red;
+  background-image: url(./img/hard.svg);
 }
