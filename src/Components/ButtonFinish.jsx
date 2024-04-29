@@ -13,7 +13,6 @@ export default function FinishButton({
   const handleOnClick = () => {
     onFinish();
     handleSummary();
-    console.log(`finish pressed, summary: ${!summary}`);
   };
 
   return (

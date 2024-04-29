@@ -51,6 +51,14 @@ p {
   padding: 0;
 }
 
+p.name {
+  font-weight: bold;
+}
+
+p.answer {
+  padding-left: var(--default-length);
+}
+
 button {
   display: flex;
   padding: 8px;
@@ -81,11 +89,12 @@ ul.questions-listing li {
   border: 2px solid transparent;
   aspect-ratio: 1;
   cursor: pointer;
-  transition: border 0.3s;
+  transition: border 0.3s, scale 0.3s;
 }
 
 ul.questions-listing li.current {
   border: 2px solid #000;
+  scale: 1.1;
 }
 
 ul.dialog-listing {
@@ -99,7 +108,7 @@ ul.dialog-listing {
 ul.dialog-listing li {
   width: calc(50% - (var(--default-length) / 2));
   list-style-type: none;
-  border: 1px solid red;
+  border: 1px solid lightblue;
   border-radius: var(--border-radius);
   padding: 5px;
   cursor: pointer;
@@ -113,6 +122,18 @@ ul.dialog-listing li:hover {
 
 ul.dialog-listing li.choosen {
   background-color: lightblue;
+}
+
+ul.answers-listing {
+  margin: 0;
+  padding: 0;
+}
+
+ul.answers-listing li {
+  border-bottom: 1px solid red;
+  list-style-type: none;
+  padding-bottom: var(--default-length);
+  margin-bottom: var(--default-length);
 }
 
 dialog {

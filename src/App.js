@@ -6,25 +6,7 @@ import StartButton from "./Components/ButtonStart.jsx";
 import FinishButton from "./Components/ButtonFinish.jsx";
 import allSelectedQuestionsShuffled from "./Questions.js";
 import Questions from "./Components/Questions.jsx";
-
-function Summary({ questions }) {
-  console.log(questions);
-
-  const questionsLength = questions.length;
-
-  const totalCorrect = questions.reduce(
-    (total, question) => total + (question.correct || 0),
-    0
-  );
-
-  return (
-    <>
-      <h2>Summary</h2>
-      <p>Total: {totalCorrect}</p>
-      <p>Length: {questionsLength}</p>
-    </>
-  );
-}
+import Summary from "./Components/Summary.jsx";
 
 function App() {
   // Start the game

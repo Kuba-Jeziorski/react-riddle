@@ -1,8 +1,8 @@
 export default function Dialog({
   question,
-  onClose,
   questions,
   handleQuestions,
+  setQuestion,
 }) {
   const handleChoosen = ({ target }) => {
     const allAnswersDOM = document.querySelectorAll(".dialog-listing li");
@@ -29,6 +29,23 @@ export default function Dialog({
     handleQuestions(updatedQuestions);
   };
 
+  const allQuestions = document.querySelectorAll(".questions-listing li");
+  const firstQuestionsIndex = Number(allQuestions[0].getAttribute("index"));
+  const lastQuestionIndex = Number(
+    allQuestions[allQuestions.length - 1].getAttribute("index")
+  );
+  const isFirst = firstQuestionsIndex === question.id;
+  const isLast = lastQuestionIndex === question.id;
+
+  const cur = questions.findIndex((current) => current.id === question.id);
+
+  function handleNext() {
+    setQuestion(questions[cur + 1]);
+  }
+  function handlePrevious() {
+    setQuestion(questions[cur - 1]);
+  }
+
   return (
     <div className="wrapper">
       <dialog open>
@@ -48,8 +65,24 @@ export default function Dialog({
           ))}
         </ul>
         <div className="dialog-buttons">
-          <button onClick={onClose}>Confirm</button>
-          <button onClick={onClose}>Close</button>
+          {!isFirst && (
+            <button
+              onClick={() => {
+                handlePrevious();
+              }}
+            >
+              Previous
+            </button>
+          )}
+          {!isLast && (
+            <button
+              onClick={() => {
+                handleNext();
+              }}
+            >
+              Next
+            </button>
+          )}
         </div>
       </dialog>
     </div>

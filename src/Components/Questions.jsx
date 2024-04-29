@@ -9,10 +9,6 @@ export default function Questions({ questions, handleQuestions }) {
     setSelectedQuestion(question);
   };
 
-  const handleDialogClose = () => {
-    setSelectedQuestion(null);
-  };
-
   return (
     <>
       <ul className="questions-listing">
@@ -31,9 +27,9 @@ export default function Questions({ questions, handleQuestions }) {
       {selectedQuestion !== null && (
         <Dialog
           question={selectedQuestion}
-          onClose={handleDialogClose}
           questions={questions}
           handleQuestions={handleQuestions}
+          setQuestion={setSelectedQuestion}
         />
       )}
     </>

@@ -4,9 +4,9 @@ const allQuestions = [
     difficulty: "easy",
     name: "1 question",
     answers: [
-      { label: "Answer content", correct: true },
+      { label: "Answer content", correct: false },
       { label: "Answer content2", correct: false },
-      { label: "Answer content3", correct: false },
+      { label: "Answer content3", correct: true },
       { label: "Answer content4", correct: false },
     ],
   },
@@ -26,8 +26,8 @@ const allQuestions = [
     difficulty: "easy",
     name: "3 question",
     answers: [
-      { label: "Answer content", correct: true },
-      { label: "Answer content2", correct: false },
+      { label: "Answer content", correct: false },
+      { label: "Answer content2", correct: true },
       { label: "Answer content3", correct: false },
       { label: "Answer content4", correct: false },
     ],
@@ -37,10 +37,10 @@ const allQuestions = [
     difficulty: "medium",
     name: "4 question",
     answers: [
-      { label: "Answer content", correct: true },
+      { label: "Answer content", correct: false },
       { label: "Answer content2", correct: false },
       { label: "Answer content3", correct: false },
-      { label: "Answer content4", correct: false },
+      { label: "Answer content4", correct: true },
     ],
   },
   {
@@ -48,10 +48,10 @@ const allQuestions = [
     difficulty: "medium",
     name: "5 question",
     answers: [
-      { label: "Answer content", correct: true },
+      { label: "Answer content", correct: false },
       { label: "Answer content2", correct: false },
       { label: "Answer content3", correct: false },
-      { label: "Answer content4", correct: false },
+      { label: "Answer content4", correct: true },
     ],
   },
   {
@@ -81,9 +81,9 @@ const allQuestions = [
     difficulty: "hard",
     name: "8 question",
     answers: [
-      { label: "Answer content", correct: true },
+      { label: "Answer content", correct: false },
       { label: "Answer content2", correct: false },
-      { label: "Answer content3", correct: false },
+      { label: "Answer content3", correct: true },
       { label: "Answer content4", correct: false },
     ],
   },
@@ -92,10 +92,10 @@ const allQuestions = [
     difficulty: "hard",
     name: "9 question",
     answers: [
-      { label: "Answer content", correct: true },
+      { label: "Answer content", correct: false },
       { label: "Answer content2", correct: false },
       { label: "Answer content3", correct: false },
-      { label: "Answer content4", correct: false },
+      { label: "Answer content4", correct: true },
     ],
   },
 ];
