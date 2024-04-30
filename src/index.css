@@ -120,13 +120,14 @@ ul.dialog-listing li:hover {
   background-color: lightblue;
 }
 
-ul.dialog-listing li.choosen {
+ul.dialog-listing li.chosen {
   background-color: lightblue;
 }
 
 ul.answers-listing {
   margin: 0;
   padding: 0;
+  padding-left: var(--default-length);
 }
 
 ul.answers-listing li {

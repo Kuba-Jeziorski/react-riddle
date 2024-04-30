@@ -1,11 +1,11 @@
-export default function StartButton({ onStart, gameState, finish }) {
+export default function StartButton({ onStart, gameState, isFinished }) {
   const startedClassName = gameState ? "hidden" : "";
 
   return (
     <button
       onClick={() => onStart()}
       className={startedClassName}
-      disabled={finish}
+      disabled={isFinished}
     >
       Start the Quiz
     </button>

@@ -1,13 +1,13 @@
 export default function FinishButton({
   onFinish,
   gameState,
-  summary,
-  setSummary,
+  showSummary,
+  setShowSummary,
 }) {
   const startedClassName = gameState ? "" : "hidden";
 
   const handleSummary = () => {
-    setSummary(!summary);
+    setShowSummary(!showSummary);
   };
 
   const handleOnClick = () => {

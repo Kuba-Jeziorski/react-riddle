@@ -7,8 +7,10 @@ export default function Summary({ questions }) {
   );
 
   const userCorrectAnswers = questions.filter(
-    (question) => question.answers[question.selected].correct === true
+    (question) => question.answers[question.selected]?.correct === true
   );
+
+  console.log(userCorrectAnswers);
 
   return (
     <>

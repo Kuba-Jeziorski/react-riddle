@@ -4,11 +4,8 @@ export default function Dialog({
   handleQuestions,
   setQuestion,
 }) {
-  const handleChoosen = ({ target }) => {
-    const allAnswersDOM = document.querySelectorAll(".dialog-listing li");
-    allAnswersDOM.forEach((answer) => answer.classList.remove("choosen"));
-
-    target.classList.add("choosen");
+  const handleChosenAnswer = ({ target }) => {
+    // target.classList.add("chosen");
 
     const listingIndex = Number(target.getAttribute("index"));
     const isCorrect = question.answers[listingIndex].correct === true ? 1 : 0;
@@ -19,31 +16,22 @@ export default function Dialog({
       correct: isCorrect,
     };
 
-    const currentIndex = questions.findIndex(
-      (current) => current.id === question.id
-    );
-
     const updatedQuestions = [...questions];
-    updatedQuestions[currentIndex] = selectedAnswer;
+    updatedQuestions[current] = selectedAnswer;
 
     handleQuestions(updatedQuestions);
   };
 
-  const allQuestions = document.querySelectorAll(".questions-listing li");
-  const firstQuestionsIndex = Number(allQuestions[0].getAttribute("index"));
-  const lastQuestionIndex = Number(
-    allQuestions[allQuestions.length - 1].getAttribute("index")
-  );
-  const isFirst = firstQuestionsIndex === question.id;
-  const isLast = lastQuestionIndex === question.id;
+  const current = questions.findIndex((current) => current.id === question.id);
 
-  const cur = questions.findIndex((current) => current.id === question.id);
+  const isNotFirst = current > 0;
+  const isNotLast = current < questions.length - 1;
 
   function handleNext() {
-    setQuestion(questions[cur + 1]);
+    setQuestion(questions[current + 1]);
   }
   function handlePrevious() {
-    setQuestion(questions[cur - 1]);
+    setQuestion(questions[current - 1]);
   }
 
   return (
@@ -55,8 +43,8 @@ export default function Dialog({
         <ul className="dialog-listing">
           {question.answers.map((answer, index) => (
             <li
-              className={question?.selected === index ? "choosen" : ""}
-              onClick={(event) => handleChoosen(event)}
+              className={question?.selected === index ? "chosen" : ""}
+              onClick={(event) => handleChosenAnswer(event)}
               key={index}
               index={index}
             >
@@ -65,7 +53,7 @@ export default function Dialog({
           ))}
         </ul>
         <div className="dialog-buttons">
-          {!isFirst && (
+          {isNotFirst ? (
             <button
               onClick={() => {
                 handlePrevious();
@@ -73,8 +61,10 @@ export default function Dialog({
             >
               Previous
             </button>
+          ) : (
+            ""
           )}
-          {!isLast && (
+          {isNotLast ? (
             <button
               onClick={() => {
                 handleNext();
@@ -82,6 +72,8 @@ export default function Dialog({
             >
               Next
             </button>
+          ) : (
+            ""
           )}
         </div>
       </dialog>

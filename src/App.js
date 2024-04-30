@@ -18,11 +18,7 @@ function App() {
 
   const finishCondition = isStarted === false && isFinished === true;
 
-  const handleStarting = () => {
-    setIsStarted((previousState) => !previousState);
-  };
-
-  const handleFinishing = () => {
+  const handleGameState = () => {
     setIsStarted((previousState) => !previousState);
   };
 
@@ -31,16 +27,16 @@ function App() {
       <Title />
       {isStarted ? (
         <FinishButton
-          onFinish={handleFinishing}
+          onFinish={handleGameState}
           gameState={isStarted}
-          summary={isFinished}
-          setSummary={setIsFinished}
+          showSummary={isFinished}
+          setShowSummary={setIsFinished}
         />
       ) : (
         <StartButton
-          onStart={handleStarting}
+          onStart={handleGameState}
           gameState={isStarted}
-          finish={finishCondition}
+          isFinished={finishCondition}
         />
       )}
       {/* <CountdownTimer isRunning={isStarted} /> */}
