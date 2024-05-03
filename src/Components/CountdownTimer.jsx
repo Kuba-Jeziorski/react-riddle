@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 
-export default function CountdownTimer({ isRunning }) {
-  const [remainingTime, setRemainingTime] = useState(5 * 60);
+export default function CountdownTimer({ isRunning, isFinished }) {
+  // const [remainingTime, setRemainingTime] = useState(5 * 60);
+  const [remainingTime, setRemainingTime] = useState(5);
 
   useEffect(() => {
     let timer;
@@ -16,6 +17,12 @@ export default function CountdownTimer({ isRunning }) {
 
     return () => clearInterval(timer);
   }, [isRunning]);
+
+  useEffect(() => {
+    if (remainingTime === 0) {
+      isFinished(); // Trigger the finish callback when time reaches zero
+    }
+  }, [remainingTime, isFinished]);
 
   const minutes = Math.floor(remainingTime / 60);
   const seconds = remainingTime % 60;

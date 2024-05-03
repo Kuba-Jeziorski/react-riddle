@@ -30,7 +30,7 @@ function App() {
       {quizState === "started" && (
         <>
           <button onClick={finishQuiz}>Finish the Quiz</button>
-          <CountdownTimer isRunning={true} />
+          <CountdownTimer isRunning={true} isFinished={finishQuiz} />
           <Questions
             questions={shuffledQuestions}
             onAnswered={(questionId, answerId) =>
