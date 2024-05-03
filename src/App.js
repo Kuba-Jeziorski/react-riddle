@@ -2,53 +2,48 @@ import { useState } from "react";
 import "./index.css";
 import Title from "./Components/Title.jsx";
 import CountdownTimer from "./Components/CountdownTimer.jsx";
-import StartButton from "./Components/ButtonStart.jsx";
-import FinishButton from "./Components/ButtonFinish.jsx";
-import allSelectedQuestionsShuffled from "./Questions.js";
+import shuffledQuestions from "./Questions.js";
 import Questions from "./Components/Questions.jsx";
 import Summary from "./Components/Summary.jsx";
 
 function App() {
   // Start the game
-  const [shuffledQuestions, setShuffledQuestions] = useState(
-    allSelectedQuestionsShuffled
-  );
-  const [isStarted, setIsStarted] = useState(false);
-  const [isFinished, setIsFinished] = useState(false);
 
-  const finishCondition = isStarted === false && isFinished === true;
+  const [answers, setAnswers] = useState({});
 
-  const handleGameState = () => {
-    setIsStarted((previousState) => !previousState);
+  // pending || started || finished
+  const [quizState, setQuizState] = useState("pending");
+
+  const finishQuiz = () => {
+    setQuizState("finished");
   };
 
+  const startQuiz = () => {
+    setQuizState("started");
+  };
   return (
     <div className="wrapper">
       <Title />
-      {isStarted ? (
-        <FinishButton
-          onFinish={handleGameState}
-          gameState={isStarted}
-          showSummary={isFinished}
-          setShowSummary={setIsFinished}
-        />
-      ) : (
-        <StartButton
-          onStart={handleGameState}
-          gameState={isStarted}
-          isFinished={finishCondition}
-        />
+      {quizState === "pending" && (
+        <button onClick={startQuiz}>Start the Quiz</button>
       )}
-      {/* <CountdownTimer isRunning={isStarted} /> */}
-      {isStarted && (
-        <Questions
-          questions={shuffledQuestions}
-          handleQuestions={(updatedQuestions) =>
-            setShuffledQuestions(updatedQuestions)
-          }
-        />
+      {quizState === "started" && (
+        <>
+          <button onClick={finishQuiz}>Finish the Quiz</button>
+          <CountdownTimer isRunning={true} />
+          <Questions
+            questions={shuffledQuestions}
+            onAnswered={(questionId, answerId) =>
+              setAnswers((answers) => ({ ...answers, [questionId]: answerId }))
+            }
+            answers={answers}
+          />
+        </>
       )}
-      {finishCondition && <Summary questions={shuffledQuestions} />}
+
+      {quizState === "finished" && (
+        <Summary questions={shuffledQuestions} answers={answers} />
+      )}
     </div>
   );
 }

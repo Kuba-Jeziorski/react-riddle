@@ -2,8 +2,10 @@ import { useState } from "react";
 import Question from "./Question";
 import Dialog from "./Dialog";
 
-export default function Questions({ questions, handleQuestions }) {
+export default function Questions({ questions, onAnswered, answers }) {
   const [selectedQuestion, setSelectedQuestion] = useState(null);
+
+  console.log(answers);
 
   const handleDialogOpen = (question) => {
     setSelectedQuestion(question);
@@ -12,7 +14,7 @@ export default function Questions({ questions, handleQuestions }) {
   return (
     <>
       <ul className="questions-listing">
-        {questions.map((singleQuestion) => (
+        {questions.map((singleQuestion, order) => (
           <Question
             question={singleQuestion}
             onPress={() => {
@@ -21,6 +23,7 @@ export default function Questions({ questions, handleQuestions }) {
             currentQuestionId={selectedQuestion?.id}
             key={singleQuestion.id}
             index={singleQuestion.id}
+            order={order}
           />
         ))}
       </ul>
@@ -28,8 +31,10 @@ export default function Questions({ questions, handleQuestions }) {
         <Dialog
           question={selectedQuestion}
           questions={questions}
-          handleQuestions={handleQuestions}
+          onAnswered={onAnswered}
           setQuestion={setSelectedQuestion}
+          selectedAnswer={answers[selectedQuestion.id]}
+          key={selectedQuestion.id}
         />
       )}
     </>

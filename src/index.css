@@ -190,7 +190,11 @@ dialog {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  animation: spin 1s linear forwards;
+  /* animation: spin 1s linear forwards; */
+  animation-name: spin;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-direction: forwards;
 }
 
 .spin.easy {

@@ -1,26 +1,19 @@
+import { useState } from "react";
+
 export default function Dialog({
   question,
   questions,
-  handleQuestions,
+  onAnswered,
   setQuestion,
+  selectedAnswer: selectedAnswerIndex,
 }) {
-  const handleChosenAnswer = ({ target }) => {
-    // target.classList.add("chosen");
-
-    const listingIndex = Number(target.getAttribute("index"));
-    const isCorrect = question.answers[listingIndex].correct === true ? 1 : 0;
-
-    const selectedAnswer = {
-      ...question,
-      selected: listingIndex,
-      correct: isCorrect,
-    };
-
-    const updatedQuestions = [...questions];
-    updatedQuestions[current] = selectedAnswer;
-
-    handleQuestions(updatedQuestions);
+  const handleSelection = (index) => {
+    setSelectedAnswer(index);
   };
+
+  const [selectedAnswer, setSelectedAnswer] = useState(
+    selectedAnswerIndex ?? null
+  );
 
   const current = questions.findIndex((current) => current.id === question.id);
 
@@ -28,9 +21,11 @@ export default function Dialog({
   const isNotLast = current < questions.length - 1;
 
   function handleNext() {
+    onAnswered(question.id, selectedAnswer);
     setQuestion(questions[current + 1]);
   }
   function handlePrevious() {
+    onAnswered(question.id, selectedAnswer);
     setQuestion(questions[current - 1]);
   }
 
@@ -43,8 +38,10 @@ export default function Dialog({
         <ul className="dialog-listing">
           {question.answers.map((answer, index) => (
             <li
-              className={question?.selected === index ? "chosen" : ""}
-              onClick={(event) => handleChosenAnswer(event)}
+              className={selectedAnswer === index ? "chosen" : ""}
+              onClick={() => {
+                handleSelection(index);
+              }}
               key={index}
               index={index}
             >
@@ -53,28 +50,8 @@ export default function Dialog({
           ))}
         </ul>
         <div className="dialog-buttons">
-          {isNotFirst ? (
-            <button
-              onClick={() => {
-                handlePrevious();
-              }}
-            >
-              Previous
-            </button>
-          ) : (
-            ""
-          )}
-          {isNotLast ? (
-            <button
-              onClick={() => {
-                handleNext();
-              }}
-            >
-              Next
-            </button>
-          ) : (
-            ""
-          )}
+          {isNotFirst && <button onClick={handlePrevious}>Previous</button>}
+          {isNotLast && <button onClick={handleNext}>Next</button>}
         </div>
       </dialog>
     </div>

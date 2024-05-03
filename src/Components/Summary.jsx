@@ -1,16 +1,11 @@
-export default function Summary({ questions }) {
+export default function Summary({ questions, answers }) {
   const questionsLength = questions.length;
 
-  const totalCorrect = questions.reduce(
-    (total, question) => total + (question.correct || 0),
-    0
-  );
-
   const userCorrectAnswers = questions.filter(
-    (question) => question.answers[question.selected]?.correct === true
+    (question) => question.answers[answers[question.id]]?.correct
   );
 
-  console.log(userCorrectAnswers);
+  const totalCorrect = userCorrectAnswers.length;
 
   return (
     <>
