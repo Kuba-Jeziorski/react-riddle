@@ -13,7 +13,6 @@ export default function Question({
   return (
     <li
       style={{ animationDelay: spinAnimationDelay }}
-      // style={{ animationDelay: `1s` }}
       className={`spin ${question.difficulty} ${currentQuestionClass}`}
       onClick={() => onPress()}
       index={index}

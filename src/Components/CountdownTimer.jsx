@@ -1,38 +1,47 @@
 import { useState, useEffect } from "react";
 
 export default function CountdownTimer({ isRunning, isFinished }) {
-  // const [remainingTime, setRemainingTime] = useState(5 * 60);
-  const [remainingTime, setRemainingTime] = useState(5);
+  const [gameTime, setGameTime] = useState(0);
+  const quizDurationInSeconds = 1000;
+  const [endTime, setEndTime] = useState(
+    Date.now() + quizDurationInSeconds * 1000
+  );
+  const [remainingTime, setRemainingTime] = useState(quizDurationInSeconds);
 
   useEffect(() => {
     let timer;
 
+    const updateRemainingTime = () => {
+      const now = Date.now();
+      const timeDifference = endTime - now;
+
+      if (timeDifference <= 0) {
+        clearInterval(timer);
+        isFinished();
+      } else {
+        setRemainingTime(Math.ceil(timeDifference / 1000));
+      }
+    };
+
     if (isRunning) {
-      timer = setInterval(() => {
-        setRemainingTime((prevTime) => prevTime - 1);
-      }, 1000);
+      timer = setInterval(updateRemainingTime, 1000);
     } else {
       clearInterval(timer);
     }
 
     return () => clearInterval(timer);
-  }, [isRunning]);
+  }, [endTime, isRunning, isFinished]);
 
   useEffect(() => {
-    if (remainingTime === 0) {
-      isFinished(); // Trigger the finish callback when time reaches zero
-    }
-  }, [remainingTime, isFinished]);
-
-  const minutes = Math.floor(remainingTime / 60);
-  const seconds = remainingTime % 60;
+    setGameTime(remainingTime);
+  }, [remainingTime, setGameTime]);
 
   return (
-    <div>
-      <p>
-        Time Remaining: {minutes < 10 ? "0" : ""}
-        {minutes}:{seconds < 10 ? "0" : ""}
-        {seconds}
+    <div className="flex-centered">
+      <p className="time">
+        Time Remaining: {Math.floor(remainingTime / 60)}:
+        {remainingTime % 60 < 10 ? "0" : ""}
+        {remainingTime % 60}
       </p>
     </div>
   );

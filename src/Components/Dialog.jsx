@@ -7,6 +7,12 @@ export default function Dialog({
   setQuestion,
   selectedAnswer: selectedAnswerIndex,
 }) {
+  const difficultyClassName = {
+    easy: "easy",
+    medium: "medium",
+    hard: "hard",
+  };
+
   const handleSelection = (index) => {
     setSelectedAnswer(index);
   };
@@ -32,9 +38,15 @@ export default function Dialog({
   return (
     <div className="wrapper">
       <dialog open>
-        <p>ID: {question.id}</p>
-        <p>Difficulty: {question.difficulty}</p>
-        <p>Name: {question.name}</p>
+        <p>
+          Difficulty:{" "}
+          <span className={difficultyClassName[question.difficulty]}>
+            {question.difficulty}
+          </span>
+        </p>
+        <p>
+          Question: <span>{question.name}</span>{" "}
+        </p>
         <ul className="dialog-listing">
           {question.answers.map((answer, index) => (
             <li
