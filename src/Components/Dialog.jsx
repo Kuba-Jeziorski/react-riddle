@@ -13,13 +13,13 @@ export default function Dialog({
     hard: "hard",
   };
 
-  const handleSelection = (index) => {
-    setSelectedAnswer(index);
-  };
-
   const [selectedAnswer, setSelectedAnswer] = useState(
     selectedAnswerIndex ?? null
   );
+
+  const handleSelection = (index) => {
+    setSelectedAnswer(index);
+  };
 
   const current = questions.findIndex((current) => current.id === question.id);
 
@@ -27,12 +27,13 @@ export default function Dialog({
   const isNotLast = current < questions.length - 1;
 
   function handleNext() {
-    onAnswered(question.id, selectedAnswer);
     setQuestion(questions[current + 1]);
   }
   function handlePrevious() {
-    onAnswered(question.id, selectedAnswer);
     setQuestion(questions[current - 1]);
+  }
+  function confirmAnswer() {
+    onAnswered(question.id, selectedAnswer);
   }
 
   return (
@@ -63,6 +64,7 @@ export default function Dialog({
         </ul>
         <div className="dialog-buttons">
           {isNotFirst && <button onClick={handlePrevious}>Previous</button>}
+          <button onClick={confirmAnswer}>Confirm</button>
           {isNotLast && <button onClick={handleNext}>Next</button>}
         </div>
       </dialog>

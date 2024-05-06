@@ -7,6 +7,8 @@ export default function Summary({ questions, answers }) {
 
   const totalCorrect = userCorrectAnswers.length;
 
+  console.log(answers);
+
   return (
     <>
       <div className="summary-div">

@@ -5,10 +5,9 @@ import Dialog from "./Dialog";
 export default function Questions({ questions, onAnswered, answers }) {
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
-  console.log(answers);
-
   const handleDialogOpen = (question) => {
     setSelectedQuestion(question);
+    console.log(`change`);
   };
 
   return (
