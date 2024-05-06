@@ -18,10 +18,14 @@
   --main-wrapper: 1000px;
 
   /* Lengths */
-  --default-length: 15px;
+  --default-length: 20px;
 
   /* Borders */
   --border-radius: 5px;
+  --border-radius-big: 20px;
+
+  /* Dialog */
+  --dialog-li-height: 40px;
 }
 
 * {
@@ -87,6 +91,14 @@ button:hover {
   background-color: var(--color-hover);
 }
 
+button[disabled] {
+  cursor: no-drop;
+}
+
+button[disabled]:hover {
+  background-color: transparent;
+}
+
 button.hidden {
   display: none;
 }
@@ -102,16 +114,15 @@ ul.questions-listing {
 
 ul.questions-listing li {
   padding: 5px;
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-big);
   list-style-type: none;
   border: 2px solid transparent;
-  aspect-ratio: 1;
+  aspect-ratio: 0.605;
   cursor: pointer;
   transition: border 0.3s, scale 0.3s;
 }
 
 ul.questions-listing li.current {
-  border: 2px solid var(--color-black);
   scale: 1.1;
 }
 
@@ -121,6 +132,7 @@ ul.dialog-listing {
   gap: var(--default-length);
   padding: 0;
   margin: 0;
+  min-height: calc(var(--default-length) + var(--dialog-li-height) * 2);
 }
 
 ul.dialog-listing li {
@@ -129,6 +141,9 @@ ul.dialog-listing li {
   border: 1px solid var(--color-hover);
   border-radius: var(--border-radius);
   padding: 5px;
+  height: 40px;
+  display: flex;
+  align-items: center;
   cursor: pointer;
   background-color: transparent;
   transition: background-color 0.3s;
@@ -192,6 +207,7 @@ span.hard {
 .dialog-buttons {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: var(--default-length);
 }
 
@@ -225,27 +241,22 @@ span.hard {
 .spin {
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 100%;
   animation-name: spinning;
   animation-duration: 1s;
   animation-timing-function: linear;
 }
 
 .spin.easy {
-  background-color: var(--color-easy);
-  background-size: 20%;
-  background-image: url(./img/flame1.svg);
+  background-image: url(./img/card-bg-easy.jpg);
 }
 
 .spin.medium {
-  background-color: var(--color-medium);
-  background-size: 40%;
-  background-image: url(./img/flame2.svg);
+  background-image: url(./img/card-bg-medium.jpg);
 }
 
 .spin.hard {
-  background-color: var(--color-hard);
-  background-size: 60%;
-  background-image: url(./img/flame3.svg);
+  background-image: url(./img/card-bg-hard.jpg);
 }
 
 .summary-div {

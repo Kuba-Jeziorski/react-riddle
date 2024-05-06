@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./index.css";
 import Title from "./Components/Title.jsx";
 import CountdownTimer from "./Components/CountdownTimer.jsx";
-import shuffledQuestions from "./Questions.js";
+import shuffledQuestions from "./questions.js";
 import Questions from "./Components/Questions.jsx";
 import Summary from "./Components/Summary.jsx";
 

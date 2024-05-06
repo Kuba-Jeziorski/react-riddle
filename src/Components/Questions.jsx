@@ -5,9 +5,11 @@ import Dialog from "./Dialog";
 export default function Questions({ questions, onAnswered, answers }) {
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
+  // 50%/50%
+  const [halved, setHalved] = useState({ amount: 2, usedAt: [] });
+
   const handleDialogOpen = (question) => {
     setSelectedQuestion(question);
-    console.log(`change`);
   };
 
   return (
@@ -34,6 +36,8 @@ export default function Questions({ questions, onAnswered, answers }) {
           setQuestion={setSelectedQuestion}
           selectedAnswer={answers[selectedQuestion.id]}
           key={selectedQuestion.id}
+          halved={halved}
+          onHalved={setHalved}
         />
       )}
     </>
