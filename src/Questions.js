@@ -4,10 +4,10 @@ const allQuestions = [
     difficulty: "easy",
     name: "What is the capital of France?",
     answers: [
-      { label: "Paris", correct: true },
-      { label: "London", correct: false },
-      { label: "Berlin", correct: false },
-      { label: "Rome", correct: false },
+      { label: "Paris", correct: true, visible: true },
+      { label: "London", correct: false, visible: true },
+      { label: "Berlin", correct: false, visible: true },
+      { label: "Rome", correct: false, visible: true },
     ],
   },
   {
@@ -15,10 +15,10 @@ const allQuestions = [
     difficulty: "easy",
     name: "Who wrote 'Romeo and Juliet'?",
     answers: [
-      { label: "William Shakespeare", correct: true },
-      { label: "Charles Dickens", correct: false },
-      { label: "Jane Austen", correct: false },
-      { label: "Mark Twain", correct: false },
+      { label: "William Shakespeare", correct: true, visible: true },
+      { label: "Charles Dickens", correct: false, visible: true },
+      { label: "Jane Austen", correct: false, visible: true },
+      { label: "Mark Twain", correct: false, visible: true },
     ],
   },
   {
@@ -26,10 +26,10 @@ const allQuestions = [
     difficulty: "easy",
     name: "What is the chemical symbol for water?",
     answers: [
-      { label: "H2O", correct: true },
-      { label: "CO2", correct: false },
-      { label: "NaCl", correct: false },
-      { label: "O2", correct: false },
+      { label: "H2O", correct: true, visible: true },
+      { label: "CO2", correct: false, visible: true },
+      { label: "NaCl", correct: false, visible: true },
+      { label: "O2", correct: false, visible: true },
     ],
   },
   {
@@ -37,10 +37,10 @@ const allQuestions = [
     difficulty: "medium",
     name: "In which year did World War II end?",
     answers: [
-      { label: "1945", correct: true },
-      { label: "1939", correct: false },
-      { label: "1941", correct: false },
-      { label: "1950", correct: false },
+      { label: "1945", correct: true, visible: true },
+      { label: "1939", correct: false, visible: true },
+      { label: "1941", correct: false, visible: true },
+      { label: "1950", correct: false, visible: true },
     ],
   },
   {
@@ -48,10 +48,10 @@ const allQuestions = [
     difficulty: "medium",
     name: "Who painted the Mona Lisa?",
     answers: [
-      { label: "Leonardo da Vinci", correct: true },
-      { label: "Pablo Picasso", correct: false },
-      { label: "Vincent van Gogh", correct: false },
-      { label: "Michelangelo", correct: false },
+      { label: "Leonardo da Vinci", correct: true, visible: true },
+      { label: "Pablo Picasso", correct: false, visible: true },
+      { label: "Vincent van Gogh", correct: false, visible: true },
+      { label: "Michelangelo", correct: false, visible: true },
     ],
   },
   {
@@ -59,10 +59,10 @@ const allQuestions = [
     difficulty: "medium",
     name: "What is the tallest mountain in the world?",
     answers: [
-      { label: "Mount Everest", correct: true },
-      { label: "K2", correct: false },
-      { label: "Kangchenjunga", correct: false },
-      { label: "Lhotse", correct: false },
+      { label: "Mount Everest", correct: true, visible: true },
+      { label: "K2", correct: false, visible: true },
+      { label: "Kangchenjunga", correct: false, visible: true },
+      { label: "Lhotse", correct: false, visible: true },
     ],
   },
   {
@@ -70,10 +70,10 @@ const allQuestions = [
     difficulty: "hard",
     name: "Who discovered penicillin?",
     answers: [
-      { label: "Alexander Fleming", correct: true },
-      { label: "Louis Pasteur", correct: false },
-      { label: "Marie Curie", correct: false },
-      { label: "Albert Einstein", correct: false },
+      { label: "Alexander Fleming", correct: true, visible: true },
+      { label: "Louis Pasteur", correct: false, visible: true },
+      { label: "Marie Curie", correct: false, visible: true },
+      { label: "Albert Einstein", correct: false, visible: true },
     ],
   },
   {
@@ -81,10 +81,10 @@ const allQuestions = [
     difficulty: "hard",
     name: "What is the largest planet in our solar system?",
     answers: [
-      { label: "Jupiter", correct: true },
-      { label: "Saturn", correct: false },
-      { label: "Neptune", correct: false },
-      { label: "Uranus", correct: false },
+      { label: "Jupiter", correct: true, visible: true },
+      { label: "Saturn", correct: false, visible: true },
+      { label: "Neptune", correct: false, visible: true },
+      { label: "Uranus", correct: false, visible: true },
     ],
   },
   {
@@ -92,10 +92,10 @@ const allQuestions = [
     difficulty: "hard",
     name: "Which language is spoken the most worldwide?",
     answers: [
-      { label: "Mandarin Chinese", correct: true },
-      { label: "English", correct: false },
-      { label: "Spanish", correct: false },
-      { label: "Hindi", correct: false },
+      { label: "Mandarin Chinese", correct: true, visible: true },
+      { label: "English", correct: false, visible: true },
+      { label: "Spanish", correct: false, visible: true },
+      { label: "Hindi", correct: false, visible: true },
     ],
   },
   {
@@ -103,10 +103,10 @@ const allQuestions = [
     difficulty: "easy",
     name: "What is the capital of Spain?",
     answers: [
-      { label: "Madrid", correct: true },
-      { label: "Barcelona", correct: false },
-      { label: "Rome", correct: false },
-      { label: "Berlin", correct: false },
+      { label: "Madrid", correct: true, visible: true },
+      { label: "Barcelona", correct: false, visible: true },
+      { label: "Rome", correct: false, visible: true },
+      { label: "Berlin", correct: false, visible: true },
     ],
   },
   {
@@ -114,10 +114,10 @@ const allQuestions = [
     difficulty: "easy",
     name: "Who is the author of 'The Great Gatsby'?",
     answers: [
-      { label: "F. Scott Fitzgerald", correct: true },
-      { label: "Ernest Hemingway", correct: false },
-      { label: "Virginia Woolf", correct: false },
-      { label: "Mark Twain", correct: false },
+      { label: "F. Scott Fitzgerald", correct: true, visible: true },
+      { label: "Ernest Hemingway", correct: false, visible: true },
+      { label: "Virginia Woolf", correct: false, visible: true },
+      { label: "Mark Twain", correct: false, visible: true },
     ],
   },
   {
@@ -125,10 +125,10 @@ const allQuestions = [
     difficulty: "easy",
     name: "What is the symbol for gold on the periodic table?",
     answers: [
-      { label: "Au", correct: true },
-      { label: "Ag", correct: false },
-      { label: "Fe", correct: false },
-      { label: "Hg", correct: false },
+      { label: "Au", correct: true, visible: true },
+      { label: "Ag", correct: false, visible: true },
+      { label: "Fe", correct: false, visible: true },
+      { label: "Hg", correct: false, visible: true },
     ],
   },
   {
@@ -136,10 +136,10 @@ const allQuestions = [
     difficulty: "medium",
     name: "Who painted 'Starry Night'?",
     answers: [
-      { label: "Vincent van Gogh", correct: true },
-      { label: "Pablo Picasso", correct: false },
-      { label: "Claude Monet", correct: false },
-      { label: "Salvador Dalí", correct: false },
+      { label: "Vincent van Gogh", correct: true, visible: true },
+      { label: "Pablo Picasso", correct: false, visible: true },
+      { label: "Claude Monet", correct: false, visible: true },
+      { label: "Salvador Dalí", correct: false, visible: true },
     ],
   },
   {
@@ -147,10 +147,10 @@ const allQuestions = [
     difficulty: "medium",
     name: "Which country is known as the Land of the Rising Sun?",
     answers: [
-      { label: "Japan", correct: true },
-      { label: "China", correct: false },
-      { label: "South Korea", correct: false },
-      { label: "Thailand", correct: false },
+      { label: "Japan", correct: true, visible: true },
+      { label: "China", correct: false, visible: true },
+      { label: "South Korea", correct: false, visible: true },
+      { label: "Thailand", correct: false, visible: true },
     ],
   },
   {
@@ -158,10 +158,10 @@ const allQuestions = [
     difficulty: "medium",
     name: "What is the chemical formula for table salt?",
     answers: [
-      { label: "NaCl", correct: true },
-      { label: "H2O", correct: false },
-      { label: "CO2", correct: false },
-      { label: "CH4", correct: false },
+      { label: "NaCl", correct: true, visible: true },
+      { label: "H2O", correct: false, visible: true },
+      { label: "CO2", correct: false, visible: true },
+      { label: "CH4", correct: false, visible: true },
     ],
   },
   {
@@ -169,10 +169,10 @@ const allQuestions = [
     difficulty: "hard",
     name: "Who composed the 'Four Seasons'?",
     answers: [
-      { label: "Antonio Vivaldi", correct: true },
-      { label: "Wolfgang Amadeus Mozart", correct: false },
-      { label: "Ludwig van Beethoven", correct: false },
-      { label: "Johann Sebastian Bach", correct: false },
+      { label: "Antonio Vivaldi", correct: true, visible: true },
+      { label: "Wolfgang Amadeus Mozart", correct: false, visible: true },
+      { label: "Ludwig van Beethoven", correct: false, visible: true },
+      { label: "Johann Sebastian Bach", correct: false, visible: true },
     ],
   },
   {
@@ -180,10 +180,10 @@ const allQuestions = [
     difficulty: "hard",
     name: "Which of Shakespeare's plays is the longest?",
     answers: [
-      { label: "Hamlet", correct: true },
-      { label: "Othello", correct: false },
-      { label: "Macbeth", correct: false },
-      { label: "King Lear", correct: false },
+      { label: "Hamlet", correct: true, visible: true },
+      { label: "Othello", correct: false, visible: true },
+      { label: "Macbeth", correct: false, visible: true },
+      { label: "King Lear", correct: false, visible: true },
     ],
   },
   {
@@ -191,10 +191,10 @@ const allQuestions = [
     difficulty: "hard",
     name: "Who is the Greek goddess of wisdom?",
     answers: [
-      { label: "Athena", correct: true },
-      { label: "Aphrodite", correct: false },
-      { label: "Artemis", correct: false },
-      { label: "Hera", correct: false },
+      { label: "Athena", correct: true, visible: true },
+      { label: "Aphrodite", correct: false, visible: true },
+      { label: "Artemis", correct: false, visible: true },
+      { label: "Hera", correct: false, visible: true },
     ],
   },
   {
@@ -202,10 +202,10 @@ const allQuestions = [
     difficulty: "easy",
     name: "What is the largest mammal?",
     answers: [
-      { label: "Blue Whale", correct: true },
-      { label: "African Elephant", correct: false },
-      { label: "Giraffe", correct: false },
-      { label: "Hippopotamus", correct: false },
+      { label: "Blue Whale", correct: true, visible: true },
+      { label: "African Elephant", correct: false, visible: true },
+      { label: "Giraffe", correct: false, visible: true },
+      { label: "Hippopotamus", correct: false, visible: true },
     ],
   },
   {
@@ -213,10 +213,10 @@ const allQuestions = [
     difficulty: "easy",
     name: "Who invented the light bulb?",
     answers: [
-      { label: "Thomas Edison", correct: true },
-      { label: "Nikola Tesla", correct: false },
-      { label: "Alexander Graham Bell", correct: false },
-      { label: "Isaac Newton", correct: false },
+      { label: "Thomas Edison", correct: true, visible: true },
+      { label: "Nikola Tesla", correct: false, visible: true },
+      { label: "Alexander Graham Bell", correct: false, visible: true },
+      { label: "Isaac Newton", correct: false, visible: true },
     ],
   },
 ];

@@ -5,7 +5,7 @@ export default function Dialog({
   questions,
   onAnswered,
   setQuestion,
-  selectedAnswer: selectedAnswerIndex,
+  selectedAnswerIndex,
   halved,
   onHalved,
 }) {
@@ -21,17 +21,19 @@ export default function Dialog({
     selectedAnswerIndex ?? null
   );
 
-  // changes in displayed answers while 50%/50% clicked
-  const [currentAnswers, setCurrentAnswers] = useState(question.answers);
+  // mockup for following changes due to halved functionality
+  const [quizQuestion, setQuizQuestion] = useState(question);
 
-  const [capturedAnswers, setCapturedAnswers] = useState([]);
-  const [capturedAnswers2, setCapturedAnswers2] = useState([]);
+  // changes in displayed answers while 50%/50% clicked
+  const [currentAnswers, setCurrentAnswers] = useState(quizQuestion.answers);
 
   const handleSelection = (index) => {
     setSelectedAnswer(index);
   };
 
-  const current = questions.findIndex((current) => current.id === question.id);
+  const current = questions.findIndex(
+    (current) => current.id === quizQuestion.id
+  );
 
   const isNotFirst = current > 0;
   const isNotLast = current < questions.length - 1;
@@ -39,18 +41,21 @@ export default function Dialog({
   function handleNext() {
     setQuestion(questions[current + 1]);
   }
+
   function handlePrevious() {
     setQuestion(questions[current - 1]);
   }
+
   function confirmAnswer() {
-    onAnswered(question.id, selectedAnswer);
+    onAnswered(quizQuestion.id, selectedAnswer);
   }
-  function handleHalved(question) {
+
+  function handleHalved(quizQuestion) {
     if (halved.amount > 0) {
       onHalved((prevHalved) => ({
         ...prevHalved,
         amount: halved.amount - 1,
-        usedAt: [...prevHalved.usedAt, question.id],
+        usedAt: [...prevHalved.usedAt, quizQuestion.id],
       }));
 
       const falsyAnswers = currentAnswers
@@ -59,88 +64,62 @@ export default function Dialog({
         )
         .filter((answerIndex) => answerIndex !== -1)
         .slice(0, 2);
-      const updatedAnswers = currentAnswers.filter(
-        (_, index) => !falsyAnswers.includes(index)
+
+      const updatedAnswers = currentAnswers.map(
+        (singleAnswer, singleAnswerIndex) => {
+          if (falsyAnswers.includes(singleAnswerIndex)) {
+            return { ...singleAnswer, visible: false };
+          } else {
+            return singleAnswer;
+          }
+        }
       );
 
       setCurrentAnswers(updatedAnswers);
 
-      if (halved.usedAt.length === 0) {
-        console.log(`captured1`);
-        console.log(updatedAnswers);
-        // first use of button is updating capturedAnswers
-        setCapturedAnswers(updatedAnswers);
-      } else if (halved.usedAt.length === 1) {
-        console.log(updatedAnswers);
-        // second use of button is updating capturedAnswers2
-        console.log(`captured2`);
-        setCapturedAnswers2(updatedAnswers);
-      } else {
-        console.log(`captured3`);
-      }
+      // this works
+      quizQuestion.answers = updatedAnswers;
+
+      // this doesn't
+      // setQuizQuestion((prevQuestion) => ({
+      //   ...prevQuestion,
+      //   answers: updatedAnswers,
+      // }));
+
+      // removing background from previously selected answer while changing cards
+      onAnswered(quizQuestion.id, null);
+      // removing background immediately from previous selected answer
+      setSelectedAnswer(null);
     }
   }
-
-  const dialogListing = (question) => {
-    let newestAnswers;
-    if (question.id === halved.usedAt[0]) {
-      console.log(`isFirst`);
-      newestAnswers = capturedAnswers;
-    } else if (question.id === halved.usedAt[1]) {
-      console.log(`isSecond`);
-      newestAnswers = capturedAnswers2;
-    } else {
-      newestAnswers = currentAnswers;
-    }
-
-    console.log(newestAnswers);
-
-    return (
-      <ul className="dialog-listing">
-        {newestAnswers.map((answer, index) => (
-          <li
-            className={selectedAnswer === index ? "chosen" : ""}
-            onClick={() => {
-              handleSelection(index);
-            }}
-            key={index}
-            index={index}
-          >
-            {answer.label}
-          </li>
-        ))}
-      </ul>
-    );
-  };
 
   return (
     <div className="wrapper">
       <dialog open>
         <p>
           Difficulty:{" "}
-          <span className={difficultyClassName[question.difficulty]}>
-            {question.difficulty}
+          <span className={difficultyClassName[quizQuestion.difficulty]}>
+            {quizQuestion.difficulty}
           </span>
         </p>
         <p>
-          Question: <span>{question.name}</span>{" "}
+          Question: <span>{quizQuestion.name}</span>{" "}
         </p>
         <ul className="dialog-listing">
           {currentAnswers.map((answer, index) => (
-            <li
+            <button
               className={selectedAnswer === index ? "chosen" : ""}
               onClick={() => {
                 handleSelection(index);
               }}
               key={index}
               index={index}
+              disabled={answer.visible !== true}
             >
               {answer.label}
-            </li>
+            </button>
           ))}
         </ul>
-        {/* dialog copy */}
-        {dialogListing(question)}
         <div className="dialog-buttons">
           {isNotFirst && <button onClick={handlePrevious}>Previous</button>}
           <button onClick={confirmAnswer}>Confirm</button>
@@ -148,9 +127,9 @@ export default function Dialog({
         </div>
         <div className="dialog-buttons">
           <button
-            onClick={() => handleHalved(question)}
+            onClick={() => handleHalved(quizQuestion)}
             disabled={
-              halved.amount === 0 || halved.usedAt.includes(question.id)
+              halved.amount === 0 || halved.usedAt.includes(quizQuestion.id)
             }
           >
             50%/50%

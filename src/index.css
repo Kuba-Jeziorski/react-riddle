@@ -92,11 +92,11 @@ button:hover {
 }
 
 button[disabled] {
-  cursor: no-drop;
+  cursor: no-drop !important;
 }
 
 button[disabled]:hover {
-  background-color: transparent;
+  background-color: transparent !important;
 }
 
 button.hidden {
@@ -135,7 +135,7 @@ ul.dialog-listing {
   min-height: calc(var(--default-length) + var(--dialog-li-height) * 2);
 }
 
-ul.dialog-listing li {
+ul.dialog-listing button {
   width: calc(50% - (var(--default-length) / 2));
   list-style-type: none;
   border: 1px solid var(--color-hover);
@@ -149,11 +149,11 @@ ul.dialog-listing li {
   transition: background-color 0.3s;
 }
 
-ul.dialog-listing li:hover {
+ul.dialog-listing button:hover {
   background-color: var(--color-hover);
 }
 
-ul.dialog-listing li.chosen {
+ul.dialog-listing button.chosen {
   background-color: var(--color-hover);
 }
 

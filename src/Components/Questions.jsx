@@ -34,7 +34,7 @@ export default function Questions({ questions, onAnswered, answers }) {
           questions={questions}
           onAnswered={onAnswered}
           setQuestion={setSelectedQuestion}
-          selectedAnswer={answers[selectedQuestion.id]}
+          selectedAnswerIndex={answers[selectedQuestion.id]}
           key={selectedQuestion.id}
           halved={halved}
           onHalved={setHalved}
