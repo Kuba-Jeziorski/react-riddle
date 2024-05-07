@@ -38,6 +38,8 @@
   --main-wrapper: 1000px;
 
   /* Lengths */
+  --small-length: 5px;
+  --medium-length: 8px;
   --default-length: 20px;
 
   /* Borders */
@@ -46,6 +48,9 @@
 
   /* Dialog */
   --dialog-li-height: 40px;
+
+  /* Button */
+  --default-button-width: 150px;
 }
 
 @keyframes spinning {
@@ -99,11 +104,7 @@ p.answer {
   padding-left: var(--default-length);
 }
 
-p.name {
-  font-weight: bold;
-}
-
-p.time {
+p:is(.name, .time) {
   font-weight: bold;
 }
 
@@ -115,7 +116,7 @@ dialog {
 
 button {
   display: flex;
-  padding: 8px;
+  padding: var(--medium-length);
   background-color: transparent;
   border-radius: var(--border-radius);
   cursor: pointer;
@@ -136,8 +137,8 @@ button[disabled]:hover {
   background-color: var(--gray) !important;
 }
 
-button.hidden {
-  display: none;
+button[clicksleft="1"] {
+  background-color: var(--color-medium);
 }
 
 button.game-state {
@@ -154,7 +155,7 @@ ul.questions-listing {
 }
 
 ul.questions-listing li {
-  padding: 5px;
+  padding: var(--small-length);
   border-radius: var(--border-radius-big);
   list-style-type: none;
   border: 2px solid transparent;
@@ -163,6 +164,7 @@ ul.questions-listing li {
   transition: border 0.3s, scale 0.3s;
 }
 
+ul.questions-listing li:hover,
 ul.questions-listing li.current {
   scale: 1.1;
 }
@@ -171,22 +173,22 @@ ul.dialog-listing {
   display: flex;
   flex-wrap: wrap;
   gap: var(--default-length);
-  padding: 0;
   margin: 0;
+  padding: 0;
   min-height: calc(var(--default-length) + var(--dialog-li-height) * 2);
 }
 
 ul.dialog-listing button {
-  width: calc(50% - (var(--default-length) / 2));
   list-style-type: none;
+  width: calc(50% - (var(--default-length) / 2));
+  height: calc(var(--default-length) * 2);
+  padding: var(--small-length);
+  background-color: transparent;
   border: 1px solid var(--color-hover);
   border-radius: var(--border-radius);
-  padding: 5px;
-  height: 40px;
   display: flex;
   align-items: center;
   cursor: pointer;
-  background-color: transparent;
   transition: background-color 0.3s;
 }
 
@@ -206,25 +208,35 @@ ul.answers-listing {
 }
 
 ul.answers-listing li {
-  border-bottom: 1px solid var(--color-hard);
   list-style-type: none;
-  padding-bottom: var(--default-length);
   margin-bottom: var(--default-length);
+  padding-bottom: var(--default-length);
+  border-bottom: 1px solid var(--color-hard);
 }
 
 dialog {
+  width: 100%;
+  padding: var(--default-length);
+  margin: var(--default-length) auto 0;
+  border-radius: var(--border-radius);
   position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--default-length);
-  margin: var(--default-length) auto 0;
-  padding: var(--default-length);
-  width: 100%;
-  border-radius: var(--border-radius);
 }
 
 span {
   font-weight: bold;
+}
+
+span.easy {
+  color: var(--color-easy);
+}
+span.medium {
+  color: var(--color-medium);
+}
+span.hard {
+  color: var(--color-hard);
 }
 
 .col-12 {
@@ -250,9 +262,9 @@ span {
 }
 
 .dialog-buttons button {
+  width: var(--default-button-width);
   display: flex;
   justify-content: center;
-  width: 150px;
 }
 
 .spin {
@@ -281,7 +293,7 @@ span {
 }
 
 .wrapper {
-  max-width: var(--main-wrapper);
   width: 100%;
+  max-width: var(--main-wrapper);
   margin: 0 auto;
 }

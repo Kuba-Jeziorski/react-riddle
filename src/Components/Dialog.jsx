@@ -36,6 +36,9 @@ export default function Dialog({
     (current) => current.id === quizQuestion.id
   );
 
+  const isDisabled =
+    halved.amount === 0 || halved.usedAt.includes(quizQuestion.id);
+
   const isNotFirst = current > 0;
   const isNotLast = current < questions.length - 1;
 
@@ -114,7 +117,6 @@ export default function Dialog({
                 handleSelection(index);
               }}
               disabled={answer.visible !== true}
-              // index={index}
               key={index}
             >
               {answer.label}
@@ -123,19 +125,24 @@ export default function Dialog({
         </ul>
         <div className="dialog-buttons">
           {isNotFirst && <button onClick={handlePrevious}>Previous</button>}
-          <button onClick={confirmAnswer}>Confirm</button>
+          <button onClick={confirmAnswer}>Confirm Answer</button>
           {isNotLast && <button onClick={handleNext}>Next</button>}
         </div>
-        <div className="dialog-buttons">
+        <div className="dialog-buttons flex-col">
           <button
             onClick={() => handleHalved(quizQuestion)}
-            disabled={
-              halved.amount === 0 || halved.usedAt.includes(quizQuestion.id)
-            }
+            clicksleft={halved.amount}
+            disabled={isDisabled}
           >
             50% / 50%
           </button>
-          <p>{`${halved.amount}/${allHalved}`}</p>
+          {isDisabled ? (
+            <p>No more chances here</p>
+          ) : (
+            <p>{`${halved.amount} ${
+              halved.amount === 1 ? "chance" : "chances"
+            } left`}</p>
+          )}
         </div>
       </dialog>
     </div>
