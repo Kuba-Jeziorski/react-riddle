@@ -22,7 +22,8 @@ export default function Dialog({
   );
 
   // mockup for following changes due to halved functionality
-  const [quizQuestion, setQuizQuestion] = useState(question);
+  const questionMockup = { ...question };
+  const [quizQuestion, setQuizQuestion] = useState(questionMockup);
 
   // changes in displayed answers while 50%/50% clicked
   const [currentAnswers, setCurrentAnswers] = useState(quizQuestion.answers);
@@ -112,9 +113,9 @@ export default function Dialog({
               onClick={() => {
                 handleSelection(index);
               }}
-              key={index}
-              index={index}
               disabled={answer.visible !== true}
+              // index={index}
+              key={index}
             >
               {answer.label}
             </button>
@@ -132,7 +133,7 @@ export default function Dialog({
               halved.amount === 0 || halved.usedAt.includes(quizQuestion.id)
             }
           >
-            50%/50%
+            50% / 50%
           </button>
           <p>{`${halved.amount}/${allHalved}`}</p>
         </div>

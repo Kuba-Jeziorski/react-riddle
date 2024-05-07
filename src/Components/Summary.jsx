@@ -11,13 +11,13 @@ export default function Summary({ questions, answers }) {
 
   return (
     <>
-      <div className="summary-div">
+      <div className="summary">
         <h2>Summary</h2>
         <p>
           Correct answers: {totalCorrect} / {questionsLength}
         </p>
       </div>
-      <div className="summary-div">
+      <div className="summary">
         <h2>Your correct answers:</h2>
         <ul className="answers-listing">
           {userCorrectAnswers.map((question, questionIndex) => (
@@ -35,7 +35,7 @@ export default function Summary({ questions, answers }) {
           ))}
         </ul>
       </div>
-      <div className="summary-div">
+      <div className="summary">
         <h2>All correct answers</h2>
         <ul className="answers-listing">
           {questions.map((question, questionIndex) => (

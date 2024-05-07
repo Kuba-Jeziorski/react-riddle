@@ -25,7 +25,9 @@ function App() {
       {quizState === "pending" && (
         <div className="col-12">
           <div className="flex-centered">
-            <button onClick={startQuiz}>Start the Quiz</button>
+            <button className="game-state" onClick={startQuiz}>
+              Start the Quiz
+            </button>
           </div>
         </div>
       )}
@@ -33,7 +35,9 @@ function App() {
         <>
           <div className="col-12 flex-col">
             <div className="flex-centered">
-              <button onClick={finishQuiz}>Finish the Quiz</button>
+              <button className="game-state" onClick={finishQuiz}>
+                Finish the Quiz
+              </button>
             </div>
             <CountdownTimer isRunning={true} isFinished={finishQuiz} />
           </div>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 export default function CountdownTimer({ isRunning, isFinished }) {
   const [gameTime, setGameTime] = useState(0);
-  const quizDurationInSeconds = 1000;
+  const quizDurationInSeconds = 600;
   const [endTime, setEndTime] = useState(
     Date.now() + quizDurationInSeconds * 1000
   );
