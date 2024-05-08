@@ -22,7 +22,9 @@ export default function Dialog({
   );
 
   // mockup for following changes due to halved functionality
-  const questionMockup = { ...question };
+  // TODO create questions object as state - better then line 27
+  // const questionMockup = { ...question };
+  const questionMockup = question;
   const [quizQuestion, setQuizQuestion] = useState(questionMockup);
 
   // changes in displayed answers while 50%/50% clicked
