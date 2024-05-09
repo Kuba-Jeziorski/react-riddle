@@ -7,7 +7,7 @@ export default function Summary({ questions, answers }) {
 
   const totalCorrect = userCorrectAnswers.length;
 
-  console.log(answers);
+  console.log(questions);
 
   return (
     <>
@@ -18,7 +18,7 @@ export default function Summary({ questions, answers }) {
         </p>
       </div>
       <div className="summary">
-        <h2>Your correct answers:</h2>
+        {userCorrectAnswers.length !== 0 && <h2>Your correct answers:</h2>}
         <ul className="answers-listing">
           {userCorrectAnswers.map((question, questionIndex) => (
             <li key={questionIndex}>

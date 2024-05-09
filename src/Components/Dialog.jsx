@@ -15,17 +15,11 @@ export default function Dialog({
     hard: "hard",
   };
 
-  const allHalved = 2;
-
   const [selectedAnswer, setSelectedAnswer] = useState(
     selectedAnswerIndex ?? null
   );
 
-  // mockup for following changes due to halved functionality
-  // TODO create questions object as state - better then line 27
-  // const questionMockup = { ...question };
-  const questionMockup = question;
-  const [quizQuestion, setQuizQuestion] = useState(questionMockup);
+  const [quizQuestion, setQuizQuestion] = useState(question);
 
   // changes in displayed answers while 50%/50% clicked
   const [currentAnswers, setCurrentAnswers] = useState(quizQuestion.answers);

@@ -5,6 +5,8 @@ import Dialog from "./Dialog";
 export default function Questions({ questions, onAnswered, answers }) {
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
+  const [stateQuestions, setStateQuestions] = useState(questions);
+
   // 50%/50%
   const [halved, setHalved] = useState({ amount: 2, usedAt: [] });
 
@@ -15,7 +17,7 @@ export default function Questions({ questions, onAnswered, answers }) {
   return (
     <>
       <ul className="questions-listing">
-        {questions.map((singleQuestion, order) => (
+        {stateQuestions.map((singleQuestion, order) => (
           <Question
             question={singleQuestion}
             onPress={() => {
@@ -31,7 +33,7 @@ export default function Questions({ questions, onAnswered, answers }) {
       {selectedQuestion !== null && (
         <Dialog
           question={selectedQuestion}
-          questions={questions}
+          questions={stateQuestions}
           onAnswered={onAnswered}
           setQuestion={setSelectedQuestion}
           selectedAnswerIndex={answers[selectedQuestion.id]}
