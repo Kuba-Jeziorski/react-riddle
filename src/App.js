@@ -8,7 +8,6 @@ import Summary from "./Components/Summary.jsx";
 
 function App() {
   const [answers, setAnswers] = useState({});
-
   // pending || started || finished
   const [quizState, setQuizState] = useState("pending");
 

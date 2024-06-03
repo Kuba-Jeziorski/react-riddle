@@ -14,8 +14,22 @@ export default function Questions({ questions, onAnswered, answers }) {
     setSelectedQuestion(question);
   };
 
+  const numberOfQuestions = questions.length;
+  const numberOfAnsweredQuestions = Object.keys(answers).length;
+
   return (
     <>
+      <div className="progress-field">
+        <div
+          className="progress-bar"
+          style={{
+            width: `${(numberOfAnsweredQuestions / numberOfQuestions) * 100}%`,
+          }}
+        ></div>
+      </div>
+      <p
+        style={{ textAlign: "center", color: "var(--color-medium)" }}
+      >{`${numberOfAnsweredQuestions}/${numberOfQuestions}`}</p>
       <ul className="questions-listing">
         {stateQuestions.map((singleQuestion, order) => (
           <Question
