@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Question from "./Question";
 import Dialog from "./Dialog";
 
@@ -9,6 +9,14 @@ export default function Questions({ questions, onAnswered, answers }) {
 
   // 50%/50%
   const [halved, setHalved] = useState({ amount: 2, usedAt: [] });
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      setSelectedQuestion(questions[0]);
+    }, 1500);
+
+    return () => clearTimeout(id);
+  }, [questions]);
 
   const handleDialogOpen = (question) => {
     setSelectedQuestion(question);
