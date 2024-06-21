@@ -94,7 +94,7 @@ export default function Dialog({
   }
 
   return (
-    <div className="wrapper">
+    <div className="dialog-wrapper">
       <dialog open>
         <p>
           Difficulty:{" "}
@@ -120,9 +120,19 @@ export default function Dialog({
           ))}
         </ul>
         <div className="dialog-buttons">
-          {isNotFirst && <button onClick={handlePrevious}>Previous</button>}
-          <button onClick={confirmAnswer}>Confirm Answer</button>
-          {isNotLast && <button onClick={handleNext}>Next</button>}
+          {isNotFirst && (
+            <button className="btn-prev" onClick={handlePrevious}>
+              Previous
+            </button>
+          )}
+          <button className="btn-cnfrm" onClick={confirmAnswer}>
+            Confirm Answer
+          </button>
+          {isNotLast && (
+            <button className="btn-next" onClick={handleNext}>
+              Next
+            </button>
+          )}
         </div>
         <div className="dialog-buttons flex-col">
           <button

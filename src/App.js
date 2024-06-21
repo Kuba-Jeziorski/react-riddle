@@ -53,6 +53,7 @@ function App() {
       {quizState === "finished" && (
         <Summary questions={shuffledQuestions} answers={answers} />
       )}
+      <footer></footer>
     </div>
   );
 }

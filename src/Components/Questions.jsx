@@ -13,7 +13,8 @@ export default function Questions({ questions, onAnswered, answers }) {
   useEffect(() => {
     const id = setTimeout(() => {
       setSelectedQuestion(questions[0]);
-    }, 1500);
+    }, 0);
+    // at 600px; setTimeout => 0s
 
     return () => clearTimeout(id);
   }, [questions]);
